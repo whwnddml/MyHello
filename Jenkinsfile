@@ -32,9 +32,6 @@ node {
 
         }
 
-        post {
-            echo 'dd'
-        }
     }catch(err){
         echo "Build Fail!!"
         throw err
