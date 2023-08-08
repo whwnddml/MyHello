@@ -56,9 +56,9 @@ node {
                                     makeEmptyDirs: false,
                                     noDefaultExcludes: false,
                                     patternSeparator: '[, ]+',
-                                    remoteDirectory: 'workspace/MyHello/lib',
+                                    remoteDirectory: '/workspace/MyHello/lib/',
                                     remoteDirectorySDF: false,
-                                    //removePrefix: 'workspace/MyHello-Pipeline/target',
+                                    removePrefix: 'workspace/MyHello-Pipeline/target',
                                     sourceFiles: 'workspace/MyHello-Pipeline/target/*.jar')
                         ],
                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
