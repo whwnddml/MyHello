@@ -50,7 +50,8 @@ node {
                     transfers: [
                         sshTransfer(cleanRemote: false,
                                     excludes: '',
-                                    execCommand: 'ls -al',
+                                    execCommand: '''ls -al
+                                                 mkdir /ttt''',
                                     execTimeout: 120000,
                                     flatten: false,
                                     makeEmptyDirs: false,
