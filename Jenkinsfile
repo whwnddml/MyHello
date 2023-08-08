@@ -62,7 +62,7 @@ node {
                                     sourceFiles: 'workspace/MyHello-Pipeline/target/*.jar')
                         ],
                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
-                ])ß
+                ])
             }
         }
 
