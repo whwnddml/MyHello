@@ -46,16 +46,23 @@ node {
 
                 // Use the Publish Over SSH plugin to transfer files
                 sshPublisher(publishers: [
-                    sshPublisherDesc(
-                        configName: remote['name'],
-                        transfers: [
-                            sshTransfer(
-                                sourceFiles: remote['sourceFiles'],
-                                remoteDirectory: remote['remoteDirectory']
-                            )
-                        ]
-                    )
-                ])
+                    sshPublisherDesc(configName: 'ds918',
+                    transfers: [
+                        sshTransfer(cleanRemote: false,
+                                    excludes: '',
+                                    execCommand: 'ls -al',
+                                    execTimeout: 120000,
+                                    flatten: false,
+                                    makeEmptyDirs: false,
+                                    noDefaultExcludes: false,
+                                    patternSeparator: '[, ]+',
+                                    remoteDirectory: '/workspace/MyHello/lib',
+                                    remoteDirectorySDF: false,
+                                    removePrefix: 'workspace/MyHello-Pipeline/target',
+                                    sourceFiles: 'workspace/MyHello-Pipeline/target/*.jar')
+                        ],
+                        usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
+                ])ß
             }
         }
 
