@@ -50,8 +50,7 @@ node {
                     transfers: [
                         sshTransfer(cleanRemote: false,
                                     excludes: '',
-                                    execCommand: '''ls -al
-                                                 mkdir /ttt''',
+                                    execCommand: 'echo ttttttttttttt',
                                     execTimeout: 120000,
                                     flatten: false,
                                     makeEmptyDirs: false,
@@ -59,7 +58,7 @@ node {
                                     patternSeparator: '[, ]+',
                                     remoteDirectory: 'workspace/MyHello/lib',
                                     remoteDirectorySDF: false,
-                                    removePrefix: 'workspace/MyHello-Pipeline/target',
+                                    //removePrefix: 'workspace/MyHello-Pipeline/target',
                                     sourceFiles: 'workspace/MyHello-Pipeline/target/*.jar')
                         ],
                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
