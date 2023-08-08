@@ -36,7 +36,7 @@ node {
             script {
                 // Define SSH connection details
                 def remote = [
-                    name: 'DS918',
+                    name: 'ds918',
                     host: 'junny.dyndns.org',
                     username: 'jenkins',
                     password: 'DS918-ssh', // Use credentials ID for security
