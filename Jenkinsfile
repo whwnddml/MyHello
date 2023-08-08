@@ -26,7 +26,7 @@ node {
 
         stage('maven build') {
             configFileProvider([configFile(fileId: 'maven-settings-xml', variable: 'MVN_SETTINGS')]) {
-            	sh "mvn -s $MVN_SETTINGS ..."
+            	sh "mvn -s $MVN_SETTINGS clean package"
             }
         }
 
