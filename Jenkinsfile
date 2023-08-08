@@ -32,6 +32,33 @@ node {
 
         }
 
+        stage('SSH Transfer') {
+            script {
+                // Define SSH connection details
+                def remote = [
+                    name: 'DS918',
+                    host: 'junny.dyndns.org',
+                    username: 'jenkins',
+                    password: 'DS918-ssh', // Use credentials ID for security
+                    sourceFiles: '/var/jenkins_home/workspace/MyHello-Pipeline/target', // Path to files to upload
+                    remoteDirectory: '/var/services/homes/jenkins/workspace/MyHello/lib' // Destination directory on the remote server
+                ]
+
+                // Use the Publish Over SSH plugin to transfer files
+                sshPublisher(publishers: [
+                    sshPublisherDesc(
+                        configName: remote['name'],
+                        transfers: [
+                            sshTransfer(
+                                sourceFiles: remote['sourceFiles'],
+                                remoteDirectory: remote['remoteDirectory']
+                            )
+                        ]
+                    )
+                ])
+            }
+        }
+
     }catch(err){
         echo "Build Fail!!"
         throw err
