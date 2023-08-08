@@ -65,7 +65,7 @@ node {
                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
                 ])
                 */
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'ds918', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker ps', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/', remoteDirectorySDF: false, removePrefix: 'workspace/MyHello-Pipeline/target', sourceFiles: 'workspace/MyHello-Pipeline/target/*.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'ds918', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker ps', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/', remoteDirectorySDF: false, removePrefix: 'workspace/MyHello-Pipeline/target', sourceFiles: 'workspace/MyHello-Pipeline/target/MyHello-0.0.1-SNAPSHOT.jar')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
 
