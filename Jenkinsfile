@@ -40,7 +40,7 @@ node {
                     host: 'junny.dyndns.org',
                     username: 'jenkins',
                     password: 'DS918-ssh', // Use credentials ID for security
-                    sourceFiles: '/var/jenkins_home/workspace/MyHello-Pipeline/target', // Path to files to upload
+                    sourceFiles: '/var/jenkins_home/workspace/MyHello-Pipeline/target/*.jar', // Path to files to upload
                     remoteDirectory: '/var/services/homes/jenkins/workspace/MyHello/lib' // Destination directory on the remote server
                 ]
 
