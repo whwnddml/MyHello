@@ -31,7 +31,7 @@ node {
             }
 
         }
-
+/*
         stage('SSH Transfer') {
             script {
                 // Define SSH connection details
@@ -55,6 +55,17 @@ node {
                             )
                         ]
                     )
+                ])
+            }
+        }
+*/
+        stage('SSH Transfer') {
+            script {
+                // Use predefined SSH server configurations from the "Publish Over SSH" plugin
+                sshPublisher(publishers: [
+                    sshPublisherDesc(usePromotionTimestamp: false, transfers: [
+                        sshTransfer(execCommand: '', execTimeout: 120000, from: 'path/to/source/files', includes: '', remoteDirectory: 'remote/directory', remoteDirectorySDF: false, removePrefix: ''),
+                    ], useWorkspaceInPromotion: false)
                 ])
             }
         }
