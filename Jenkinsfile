@@ -61,20 +61,23 @@ node {
             }
         }
 
-        /*
+
         def remote = [:]
         remote.name = 'DS918-ssh'
         remote.host = 'junny.dyndns.org'
+        remote.port = 2223
         remote.user = 'jenkins'
         remote.password = 'DS918-ssh'
         remote.allowAnyHosts = true
 
         stage('Remote SSH') {
-            sshCommand remote: remote, command: "ls -lrt"
+            sshCommand remote: remote, command: "sudo ls -lrt"
             sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
         }
         // 이렇게 하니 Auth fail 이 발생함.
-        */
+
+        /*
+        // 아래 코드는 성공. 결국 시놀로지 서버의 sudoers 의 NOPASSWD 를 입력하고 나서야 sudo 명령으로 처리 됨.
         withCredentials([usernamePassword(credentialsId: 'DS918-ssh', usernameVariable: 'userName', passwordVariable: 'password')]) {
             def remote = [:]
             remote.name = "DS918-ssh"
@@ -87,6 +90,7 @@ node {
             // 서버 재시작 명령
             sshCommand remote: remote, command: 'sudo ls -al'
         }
+        */
 
 
     }catch(err){
