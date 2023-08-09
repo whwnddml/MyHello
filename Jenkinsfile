@@ -62,7 +62,7 @@ node {
                 ])
 
                 // SSH를 통해 원격 서버에서 JAR 파일 실행(경로이동포함)
-                sshCommand remote: remote, command: 'java -jar -Dserver.port=18081 *.jar &', verbose: true
+                sshCommand remote: remote, command: 'cd MyHello/lib && java -jar -Dserver.port=18081 *.jar &'
 
             }
         }
