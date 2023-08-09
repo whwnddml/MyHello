@@ -84,7 +84,7 @@ node {
             remote.password = password
 
             // 서버 재시작 명령
-            sshCommand remote: remote, command: 'ls -al'
+            sshCommand remote: remote, command: 'sudo ls -al'
         }
 
 
