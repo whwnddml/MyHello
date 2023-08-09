@@ -61,6 +61,7 @@ node {
             }
         }
 
+        /*
         def remote = [:]
         remote.name = 'DS918-ssh'
         remote.host = 'junny.dyndns.org'
@@ -71,6 +72,21 @@ node {
         stage('Remote SSH') {
             sshCommand remote: remote, command: "ls -lrt"
             sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+        }
+        // 이렇게 하니 Auth fail 이 발생함.
+        */
+        withCredentials([sshUserPrivateKey(credentialsId: 'DS918-ssh', keyFileVariable: 'identity', passphraseVariable: 'passphrase', usernameVariable: 'userName')]) {
+            def remote = [:]
+            remote.name = "DS918-ssh"
+            remote.host = "junny.dyndns.org"
+            remote.allowAnyHosts = true
+            remote.use가r = userName
+            remote.identityFile = identity
+
+            // 서버 재시작 명령어
+            stage("Restart") {
+                sshCommand remote: remote, command: 'ls -al'
+            }
         }
 
 
