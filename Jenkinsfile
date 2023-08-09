@@ -74,6 +74,7 @@ node {
 
                 // 서버 재시작 명령
                 sshCommand remote: remote, command: 'sudo ls -al'
+                sshCommand remote: remote, command: 'sudo cd MyHello/lib && sudo ls -al'
             }
         }
 
