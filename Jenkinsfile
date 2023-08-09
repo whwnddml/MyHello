@@ -42,7 +42,7 @@ node {
                     transfers: [
                         sshTransfer(cleanRemote: false,
                                     excludes: '',
-                                    execCommand: 'echo ttttttttttttt',
+                                    execCommand: 'ls -al',  // Add the ls command to list files
                                     execTimeout: 120000,
                                     flatten: false,
                                     makeEmptyDirs: false,
@@ -50,8 +50,8 @@ node {
                                     patternSeparator: '[, ]+',
                                     remoteDirectory: '',
                                     remoteDirectorySDF: false,
-                                    removePrefix: 'workspace/MyHello-Pipeline/target',
-                                    sourceFiles: 'workspace/MyHello-Pipeline/target/*.jar')
+                                    removePrefix: 'target',
+                                    sourceFiles: 'target/*.jar')
                         ],
                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
                 ])
