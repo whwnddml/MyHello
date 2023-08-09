@@ -47,6 +47,7 @@ node {
                 ]
                 */
                 script {
+                    def remoteName = "ds918"
                     def remoteHost = 'junny.dyndns.org'
                     def remotePort = 2223
                     def remoteUser = 'jenkins'
@@ -54,6 +55,7 @@ node {
 
                     sshCommand(
                         remote: [
+                            name: remoteName,
                             credentialsId: sshKey,
                             host: remoteHost,
                             port: remotePort,
