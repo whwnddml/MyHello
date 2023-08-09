@@ -35,7 +35,7 @@ node {
         stage('SSH Transfer') {
             script {
                 // Define SSH connection details
-                def remote = [
+                def remoteServer = [
                     name: 'ds918',
                     host: 'junny.dyndns.org',
                     port: '2223',
@@ -47,10 +47,10 @@ node {
 
                 sshCommand(
                     remote: [
-                        credentialsId: remote.password,
-                        host: remote.host,
-                        port: remote.port,
-                        user: remote.username
+                        credentialsId: remoteServer.password,
+                        host: remoteServer.host,
+                        port: remoteServer.port,
+                        user: remoteServer.username
                     ],
                     command: 'pwd'
                 )
