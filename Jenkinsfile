@@ -75,18 +75,16 @@ node {
         }
         // 이렇게 하니 Auth fail 이 발생함.
         */
-        withCredentials([sshUserPrivateKey(credentialsId: 'DS918-ssh', keyFileVariable: 'identity', passphraseVariable: 'passphrase', usernameVariable: 'userName')]) {
+        withCredentials([usernamePassword(credentialsId: 'DS918-ssh', usernameVariable: 'userName', passwordVariable: 'password')]) {
             def remote = [:]
             remote.name = "DS918-ssh"
             remote.host = "junny.dyndns.org"
             remote.allowAnyHosts = true
-            remote.use가r = userName
-            remote.identityFile = identity
+            remote.user = userName
+            remote.password = password
 
-            // 서버 재시작 명령어
-            stage("Restart") {
-                sshCommand remote: remote, command: 'ls -al'
-            }
+            // 서버 재시작 명령
+            sshCommand remote: remote, command: 'ls -al'
         }
 
 
