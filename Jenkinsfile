@@ -61,8 +61,8 @@ node {
             }
         }
 
+        // 아래 코드는 성공. 결국 시놀로지 서버의 sudoers 의 NOPASSWD 를 입력하고 나서야 sudo 명령으로 처리 됨.
         stage('Remote SSH') {
-            // 아래 코드는 성공. 결국 시놀로지 서버의 sudoers 의 NOPASSWD 를 입력하고 나서야 sudo 명령으로 처리 됨.
             withCredentials([usernamePassword(credentialsId: 'DS918-ssh', usernameVariable: 'userName', passwordVariable: 'password')]) {
                 def remote = [:]
                 remote.name = "DS918-ssh"
@@ -73,7 +73,11 @@ node {
                 remote.password = password
 
                 // 서버 명령
-                sshCommand remote: remote, command: 'sudo ls -al && cd MyHello/lib && ls -al'
+                // Multiple commands separated by && operator
+                def combinedCommand = 'sudo ls -al && cd MyHello/lib && ls -al'
+
+                // Execute the combined command
+                sshCommand remote: remote, command: combinedCommand
             }
         }
 
