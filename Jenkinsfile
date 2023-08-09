@@ -15,6 +15,13 @@ node {
         env.M3_HOME = "${tool 'maven-3.9.4'}"
         env.PATH = "${env.JAVA_HOME}/bin:${env.M3_HOME}/bin:${env.PATH}"
 
+        def remote = [:]
+        remote.name = 'ds918'
+        remote.host = 'junny.dyndns.org'
+        remote.user = 'jenkins'
+        remote.password = 'DS918-ssh'
+        remote.allowAnyHosts = true
+
         stage('git checkout') {
 //             git (
 //                 branch: "master",
@@ -55,7 +62,7 @@ node {
                 ])
 
                 // SSH를 통해 원격 서버에서 JAR 파일 실행(경로이동포함)
-                sshCommand remote: 'junny.dyndns.org', command: 'java -jar -Dserver.port=18081 *.jar &', verbose: true
+                sshCommand remote: remote, command: 'java -jar -Dserver.port=18081 *.jar &', verbose: true
 
             }
         }
