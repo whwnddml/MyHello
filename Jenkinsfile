@@ -54,6 +54,9 @@ node {
                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
                 ])
 
+                // SSH를 통해 원격 서버에서 JAR 파일 실행
+                sshCommand remote: 'ds918', command: 'cd /MyHello/lib && java -jar -Dserver.port=18081 *.jar &'
+
             }
         }
 
