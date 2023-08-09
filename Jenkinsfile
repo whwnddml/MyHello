@@ -48,7 +48,7 @@ node {
                                     makeEmptyDirs: false,
                                     noDefaultExcludes: false,
                                     patternSeparator: '[, ]+',
-                                    remoteDirectory: '/var/services/homes/jenkins/workspace',
+                                    remoteDirectory: '/workspace',
                                     remoteDirectorySDF: false,
                                     removePrefix: 'target',
                                     sourceFiles: 'target/*.jar')
