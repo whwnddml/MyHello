@@ -79,6 +79,7 @@ node {
             def remote = [:]
             remote.name = "DS918-ssh"
             remote.host = "junny.dyndns.org"
+            remote.port = 2223
             remote.allowAnyHosts = true
             remote.user = userName
             remote.password = password
