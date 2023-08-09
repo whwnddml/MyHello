@@ -38,12 +38,22 @@ node {
                 def remote = [
                     name: 'ds918',
                     host: 'junny.dyndns.org',
+                    port: '2223',
                     username: 'jenkins',
                     password: 'DS918-ssh', // Use credentials ID for security
                     sourceFiles: 'var/jenkins_home/workspace/MyHello-Pipeline/target/*.jar', // Path to files to upload
                     remoteDirectory: 'workspace/MyHello/lib' // Destination directory on the remote server
                 ]
 
+                sshCommand(
+                    remote: [
+                        credentialsId: remote.password,
+                        host: remote.host,
+                        port: remote.port,
+                        user: remote.username
+                    ],
+                    command: 'pwd'
+                )
                 // Use the Publish Over SSH plugin to transfer files
                 /*
                 sshPublisher(publishers: [
