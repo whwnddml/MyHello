@@ -34,15 +34,13 @@ node {
 
         stage('SSH Transfer') {
             script {
-
                 // Use the Publish Over SSH plugin to transfer files
-
                 sshPublisher(publishers: [
-                    sshPublisherDesc(configName: 'ds918',
+                    sshPublisherDesc(configName: 'ds918', // jenkins ssh server 에 설정된 명칭
                     transfers: [
                         sshTransfer(cleanRemote: false,
                                     excludes: '',
-                                    execCommand: 'ls -al',  // Add the ls command to list files
+                                    execCommand: 'java -jar -Dserver.port=18081 *.jar &',  // Add the ls command to list files
                                     execTimeout: 120000,
                                     flatten: false,
                                     makeEmptyDirs: false,
