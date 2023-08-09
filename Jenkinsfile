@@ -72,9 +72,8 @@ node {
                 remote.user = userName
                 remote.password = password
 
-                // 서버 재시작 명령
-                sshCommand remote: remote, command: 'sudo ls -al'
-                sshCommand remote: remote, command: 'sudo cd MyHello/lib && sudo ls -al'
+                // 서버 명령
+                sshCommand remote: remote, command: 'sudo ls -al && cd MyHello/lib && ls -al'
             }
         }
 
