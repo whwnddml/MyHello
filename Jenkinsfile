@@ -62,9 +62,14 @@ node {
                 ])
 
                 // SSH를 통해 원격 서버에서 JAR 파일 실행(경로이동포함)
-                sshCommand remote: remote, command: 'cd MyHello/lib'
+                //sshCommand remote: remote, command: 'cd MyHello/lib'
 
             }
+        }
+
+        stage('Remote SSH') {
+            sshCommand remote: remote, command: "ls -lrt"
+            sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
         }
 
 
