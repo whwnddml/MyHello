@@ -74,7 +74,7 @@ node {
 
                 // 서버 명령
                 // Multiple commands separated by && operator
-                def combinedCommand = 'sudo ls -al && cd MyHello/lib && ls -al'
+                def combinedCommand = 'sudo ls -al && cd workspace/MyHello/lib && ls -al'
 
                 // Execute the combined command
                 sshCommand remote: remote, command: combinedCommand
