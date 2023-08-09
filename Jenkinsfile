@@ -47,7 +47,7 @@ node {
                 ]
                 */
                 script {
-                    def remoteName = "ds918"
+                    def remoteName = "junny.dyndns.org"
                     def remoteHost = 'junny.dyndns.org'
                     def remotePort = 2223
                     def remoteUser = 'jenkins'
