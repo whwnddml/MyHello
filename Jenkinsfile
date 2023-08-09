@@ -15,12 +15,6 @@ node {
         env.M3_HOME = "${tool 'maven-3.9.4'}"
         env.PATH = "${env.JAVA_HOME}/bin:${env.M3_HOME}/bin:${env.PATH}"
 
-        def remote = [:]
-        remote.name = 'ds918'
-        remote.host = 'junny.dyndns.org'
-        remote.user = 'jenkins'
-        remote.password = 'DS918-ssh'
-        remote.allowAnyHosts = true
 
         stage('git checkout') {
 //             git (
@@ -66,6 +60,13 @@ node {
 
             }
         }
+
+        def remote = [:]
+        remote.name = 'DS918-ssh'
+        remote.host = 'junny.dyndns.org'
+        remote.user = 'jenkins'
+        remote.password = 'DS918-ssh'
+        remote.allowAnyHosts = true
 
         stage('Remote SSH') {
             sshCommand remote: remote, command: "ls -lrt"
