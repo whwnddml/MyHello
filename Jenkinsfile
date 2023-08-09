@@ -48,7 +48,7 @@ node {
                                     noDefaultExcludes: false,
                                     patternSeparator: '[, ]+',
                                     remoteDirectory: '/MyHello/lib',
-                     시               remoteDirectorySDF: false,
+                                    remoteDirectorySDF: false,
                                     removePrefix: 'target',
                                     sourceFiles: 'target/*.jar')
                         ],
