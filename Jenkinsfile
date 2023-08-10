@@ -1,32 +1,16 @@
 node {
-
     try{
-
-        // def JAVA_HOME = "${tool 'adoptopenjdk8'}"
-        // def M3_HOME = "${tool 'maven3.8.4'}"
-        // withEnv ([
-        //     "JAVA_HOME=${JAVA_HOME}",
-        //     "M3_HOME=${M3_HOME}",
-        //     "PATH=${JAVA_HOME}/bin:${M3_HOME}/bin:${env.PATH}"]){
-        //     //...
-        // }
         ////////////////////////////////////////////
         env.JAVA_HOME = "${tool 'jdk17'}"
         env.M3_HOME = "${tool 'maven-3.9.4'}"
         env.PATH = "${env.JAVA_HOME}/bin:${env.M3_HOME}/bin:${env.PATH}"
 
-
         stage('git checkout') {
-//             git (
-//                 branch: "master",
-//                 credentialsId: "github-ssh",
-//                 url: "git@github.....git"
-//             )
             checkout scm
         }
 
         stage('maven build') {
-
+            // 젠킨스 관리 > Managed Files 에 Config File 로 등록한 것을 사용함.
             configFileProvider([configFile(fileId: 'maven-settings-xml', variable: 'MVN_SETTINGS')]) {
             	sh "mvn -s $MVN_SETTINGS clean package"
             }
@@ -41,13 +25,13 @@ node {
                     transfers: [
                         sshTransfer(cleanRemote: false,
                                     excludes: '',
-                                    execCommand: 'java -jar -Dserver.port=18081 *.jar &',  // Add the ls command to list files
+                                    execCommand: 'sudo ls -lrt',  // Add the ls command to list files
                                     execTimeout: 120000,
                                     flatten: false,
                                     makeEmptyDirs: false,
                                     noDefaultExcludes: false,
                                     patternSeparator: '[, ]+',
-                                    remoteDirectory: '/MyHello/lib',
+                                    remoteDirectory: '/MyHello/lib', // SSH Server 에 기록된 Remote Directory 이후 경로만 입력.
                                     remoteDirectorySDF: false,
                                     removePrefix: 'target',
                                     sourceFiles: 'target/*.jar')
@@ -65,7 +49,7 @@ node {
         stage('Remote SSH') {
             withCredentials([usernamePassword(credentialsId: 'DS918-ssh', usernameVariable: 'userName', passwordVariable: 'password')]) {
                 def remote = [:]
-                remote.name = "DS918-ssh"
+                remote.name = "DS918-ssh" // jenkins Credential ID
                 remote.host = "junny.dyndns.org"
                 remote.port = 2223
                 remote.allowAnyHosts = true
@@ -80,7 +64,6 @@ node {
                 sshCommand remote: remote, command: combinedCommand
             }
         }
-
 
     }catch(err){
         echo "Build Fail!!"
